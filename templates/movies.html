@@ -1,0 +1,25 @@
+{% extends "bones.html" %} 
+{% block content %} 
+        <div class="flexible">
+          <div style="max-width:300px">
+            <img src="https://picsum.photos/300/200" />
+          </div>
+        </div>
+  <p>Here are some movies I like:</p> 
+    <ul style="list-style:none">
+    {% for movie in movies %}
+      <li>
+        <b>{{ movie.title }}</b> is a {{ movie.genre }} movie and its rating is {{       movie.rating }} {{movie.stars|safe}}
+        {% if movie.rating >= 4 %}
+        🙂
+        {% elif movie.rating <= 2 %}
+        🙁
+        {% else %}
+        😕
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+{% endblock %} 
+
+

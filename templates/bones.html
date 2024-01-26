@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <style>
+      /* makes images in div be size of box */
+      .flexible img{
+          width:100%;
+       }
+
+       /* uses flexbox to control size of child elements */
+       .flexible{
+          display: flex;
+          justify-content: space-evenly;
+       }
+
+      /*makes our stars gold when checked*/
+      .checked {
+        color: gold;
+      }
+      
+    </style>
+
+    
+  </head>
+  
+  <body>
+  <h1>{{title}}</h1>
+    <nav class="w3-bar w3-purple">
+      <a href="/" class="w3-bar-item w3-button">home</a>
+      <a href="/about" class="w3-bar-item w3-button">about</a>
+      <a href="/portfolio" class="w3-bar-item w3-button">portfolio</a>
+      <a href="/contact" class="w3-bar-item w3-button">contact</a>
+      <a href="/movies" class="w3-bar-item w3-button">movies</a>
+    </nav>
+    
+  {% block content %}
+  {% endblock %}
+  </body>
+</html>
+
