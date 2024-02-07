@@ -92,8 +92,25 @@ def users():
     return render_template("users.html", **context)
 
 @app.route('/user/<int:user_number>')
-def user(user_number):
-    return f'Content for User {user_number}:'
+def show_user(user_number):
+  this_user = load_user_data(user_number)
+  if this_user:
+      title = "User"
+      context = {
+        "title": title,
+        "user":  this_user
+      }
+      return render_template("user.html", **context)
+  else:
+      return 'User Not Found', 404
+
+def load_user_data(user_number):
+  # Read project data from JSON file
+  with open('test.json') as json_file:
+      user_data = json.load(json_file)
+      user = next((u for u in user_data if u['id'] == user_number), None)
+      return user
+
 
 
 app.run(host='0.0.0.0', port=81)
