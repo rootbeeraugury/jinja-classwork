@@ -1,10 +1,50 @@
-{% extends 'bones.html' %}
+{% extends "bones.html" %} 
 {% block content %}
-    <h3>{{ recipe.name }}</h3>
-    <p>Author: {{ recipe.author }}</p>
-    <p>Description: {{ recipe.description }}</p>
-    <p>Ingredients: {{ recipe.ingredients }}</p>
-    <p>Instructions: {{ recipe.instructions }}</p>
-    <p>Rating: {{ recipe.rating }}</p>
-    <p>Category: {{ recipe.category.name }}</p>
+<div class="w3-container" style="display:flex;justify-content:space-around">
+<div class="w3-card-4 w3-center w3-animate-zoom" style="max-width:400px">
+ 
+<header class="w3-container w3-light-grey">
+  <h3><strong>{{ recipe.name }}</strong></h3>
+</header>
+<div class="flexible">
+    <div style="max-width:300px">
+        <img src="/static/recipe_pics/recipe_{{ recipe.id }}.jpg" />
+    </div>
+</div>
+<div class="w3-container">
+  <p>Author: {{ recipe.author }}</p>
+  <p>Description: {{ recipe.description }}</p>
+  <p>Ingredients: {{ recipe.ingredients }}</p>
+  <p>Instructions: {{ recipe.instructions }}</p>
+  <p>Rating: {{ recipe.rating }}</p>
+  {% if current_user.is_authenticated %}
+    <p><a href="/edit_recipe/{{recipe.id}}">Edit</a></p>
+    <p><a href="/recipe_pic/{{recipe_id}}">Upload Picture</a></p>
+    <form action="/delete_recipe/{{recipe.id}}") method="post" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  {% endif %}
+
+  
+  <footer class="w3-container w3-light-grey"><h5><strong>Category: {{ recipe.category.name }}
+  {% if(recipe.category.name == 'Breakfast') %}
+    <i class="cp cp-banana"></i> 
+  {% elif(recipe.category.name == 'Lunch') %}
+    <i class="cp cp-sandwich"></i>
+  {% elif(recipe.category.name == 'Dinner') %}
+    <i class="cp cp-chicken-leg"></i>
+  {% elif(recipe.category.name == 'Dessert') %}
+    <i class="cp cp-cake-slice"></i>
+  {% elif(recipe.category.name == 'Salad') %}
+    <i class="cp cp-cabbage"></i>
+  {% else %}
+    <i class="cp cp-taco"></i>
+  {% endif %}
+    </strong></h5>
+    <p><a href="/recipes">back to recipes</a></p>
+  </footer>
+</div>
+</div>
+</div>
 {% endblock %}

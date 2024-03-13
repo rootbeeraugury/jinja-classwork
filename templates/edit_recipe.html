@@ -1,0 +1,50 @@
+<!--templates/edit_recipe.html -->
+{% extends 'bones.html' %}
+
+{% block content %}
+<h2>Edit Recipe</h2>
+<!--  <form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name(size=32) }}<br>
+    <br>
+    {{ form.ingredients.label }} {{ form.ingredients(rows=4, cols=32) }}<br>
+    {{ form.instructions.label }} {{ form.instructions(rows=4, cols=32) }}<br>
+    {{ form.category_id.label }} {{ form.category_id() }}<br>
+    {{ form.rating.label }} {{ form.rating() }}<br>
+    <input type="submit" value="Update Recipe">
+  </form> -->
+
+<form method="POST" action="" class="main-form">
+  <div>
+    {{ form.hidden_tag() }}
+    <label for="Name">Name: </label><br>
+    {{ form.name(size=32) }}
+  </div>
+  <div>
+    <label for="Author">Author: </label><br>
+    {{ form.author(size=32) }}
+  </div>
+  <div>
+    <label for="Description">Description: </label><br>
+    {{ form.description(rows=4, cols=32) }}
+  </div>
+  <div>
+    <label for="Ingredients">Ingredients: </label><br>
+    {{ form.ingredients(rows=4, cols=32) }}
+  </div>
+  <div>
+    <label for="Instructions">Instructions: </label><br>
+    {{ form.instructions(rows=4, cols=32) }}
+  </div>
+  <div>
+    <label for="Category">Category: </label><br>
+    {{ form.category_id() }}
+  </div>
+  <div>
+    <label for="Rating">Rating: </label><br>
+    {{ form.rating() }}
+  </div>
+  <div><button type="submit">Edit Recipe</button></div>
+</form>
+
+{% endblock %}
